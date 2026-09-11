@@ -1,5 +1,4 @@
-# Widget penghitung sisa sit-up (Sits) yang menampilkan jumlah sit-up yang tersisa.
-# Diperbarui setiap kali animasi Runner menyelesaikan satu gerakan.
+
 
 from kivy.uix.label import Label
 
