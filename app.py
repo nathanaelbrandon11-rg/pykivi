@@ -1,4 +1,6 @@
 #------------IMPORTS----------------#
+from asyncio import Runner
+
 from kivy.app import App
 from kivy.uix.button import Button
 from kivy.uix.label import Label
@@ -120,6 +122,33 @@ class PulseScreen(Screen):
             else:
                 self.manager.current = 'sits'
                 
+
+
+class CheckSits(Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.next_screen = False
+
+        instr = Label(text=txt_sits,size_hint=(0.5, 1))
+        self.lbl_sits = Sits(30)
+        self.run = Runner(total=30, steptime=1.5, size_hint=(0.4, 1))
+        self.run.bind(finished=self.run_finished)
+
+        line = BoxLayout()
+        vlay = BoxLayout(orientation='vertical', size_hint=(0.3, 1))
+        vlay.add_widget(self.lbl_sits)
+        line.add_widget(vlay)
+        line.add_widget(self.run)
+
+        self.btn = Button(text= 'Start Squats', size_hint=(0.3, 0.2),pos_hint={'center_x': 0.5})
+        self.btn.background_color = btn_color
+        self.btn.on_press = self.next_screen
+
+        outer = BoxLayout(orientation='vertical', padding=8, spacing=8)
+        outer.add_widget(line)
+        outer.add_widget(self.btn)
+
+        self.add_widget(outer)
 
 
 
